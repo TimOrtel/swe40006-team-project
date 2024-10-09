@@ -23,4 +23,10 @@ class MessageService {
             messages.toList()
         }
     }
+
+    fun clearMessages() {
+        synchronized(messages) {
+            messages.clear()
+        }
+    }
 }
