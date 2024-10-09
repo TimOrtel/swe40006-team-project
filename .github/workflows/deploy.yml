@@ -24,10 +24,14 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
       - name: Build
-        run: backend/gradlew build --no-deamon
+        run: |
+          cd backend
+          gradlew build --no-deamon
 
       - name: Build
-        run: backend/gradlew test --no-deamon
+        run: |
+          cd backend
+          gradlew test --no-deamon
 
   deploy:
     runs-on: ubuntu-latest
