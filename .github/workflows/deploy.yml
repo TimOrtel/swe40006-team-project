@@ -51,11 +51,13 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
-          docker build backend -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/backend:${{ github.sha }}
+          docker build backend -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/backend:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/backend:latest
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/backend:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/backend:latest
           
-          docker build frontend -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
+          docker build frontend -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:latest
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:latest
 
       - name: 'Update the Dockercompose file'
         run: |

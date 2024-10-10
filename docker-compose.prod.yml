@@ -6,6 +6,8 @@ services:
     environment:
       - REGISTRY_LOGIN_SERVER=${REGISTRY_LOGIN_SERVER}
       - PORT=8080
+    ports:
+      - "8080:8080"
     restart: on-failure
 
 
@@ -15,14 +17,8 @@ services:
       - REGISTRY_LOGIN_SERVER=${REGISTRY_LOGIN_SERVER}
     ports:
       - "80:80"
+      - "443:443"
     restart: on-failure
-
-  prometheus:
-    image: prom/prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
 
       #grafana:
       # image: grafana/grafana

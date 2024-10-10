@@ -7,3 +7,4 @@ RUN npm install && npm run build
 FROM nginx
 COPY --from="build" /app/dist/frontend/browser /usr/share/nginx/html
 EXPOSE 80
+EXPOSE 443
