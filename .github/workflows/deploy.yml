@@ -57,6 +57,10 @@ jobs:
           docker build frontend -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
 
+      - name: 'Update the Dockercompose file'
+        run: |
+          sed -i "s/\${REGISTRY_LOGIN_SERVER}/${{ secrets.REGISTRY_LOGIN_SERVER }}/g" docker-compose.prod.yml
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
