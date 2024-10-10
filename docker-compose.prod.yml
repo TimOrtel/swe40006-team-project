@@ -4,17 +4,14 @@ services:
   backend:
     image: "${REGISTRY_LOGIN_SERVER}/backend:latest"
     environment:
-      - REGISTRY_LOGIN_SERVER=${REGISTRY_LOGIN_SERVER}
       - PORT=8080
-    ports:
-      - "8080:8080"
     restart: on-failure
+    depends_on:
+      - frontend
 
 
   frontend:
     image: "${REGISTRY_LOGIN_SERVER}/frontend:latest"
-    environment:
-      - REGISTRY_LOGIN_SERVER=${REGISTRY_LOGIN_SERVER}
     ports:
       - "80:80"
       - "443:443"
