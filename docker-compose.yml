@@ -16,9 +16,8 @@ services:
       - "80:80"
 
   prometheus:
-    image: prom/prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    build:
+      context: prometheus
     ports:
       - "9090:9090"
 

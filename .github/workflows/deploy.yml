@@ -58,6 +58,10 @@ jobs:
           docker build frontend -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:latest
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:latest
+          
+          docker build prometheus -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/prometheus:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/prometheus:latest
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/prometheus:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/prometheus:latest
 
       - name: 'Update the Dockercompose file'
         run: |
