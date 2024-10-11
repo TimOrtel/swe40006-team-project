@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController
 class MessageController @Autowired constructor(private val messageService: MessageService) {
 
     @RequestMapping(path = ["/api/messages/create"], method = [RequestMethod.POST])
-    fun createMessage(@RequestBody message: Message): ResponseEntity<Message> {
-        messageService.createMessage(message)
+    fun createMessage(@RequestBody message: String): ResponseEntity<Unit> {
+        messageService.createMessage(Message(message))
 
-        return ResponseEntity(message, HttpStatus.OK)
+        return ResponseEntity(Unit, HttpStatus.OK)
     }
 
     @RequestMapping(path = ["/api/messages"], method = [RequestMethod.GET])
-    fun getMessages(): ResponseEntity<List<Message>> {
-        return ResponseEntity(messageService.getMessages(), HttpStatus.OK)
+    fun getMessages(): ResponseEntity<List<String>> {
+        return ResponseEntity(messageService.getMessages().map { it.content }, HttpStatus.OK)
     }
 }
